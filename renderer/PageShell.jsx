@@ -1,7 +1,8 @@
 import React from 'react'
 import logo from './logo.svg'
-import './PageShell.css'
+import './PageShell.scss'
 import { PageContextProvider } from './usePageContext'
+import { SqFooter } from '../components/SqFooter/SqFooter'
 import { Link } from './Link'
 
 export { PageShell }
@@ -10,8 +11,8 @@ function PageShell({ pageContext, children }) {
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
-        <Layout>
-          <Sidebar>
+        <>
+          <SqHeader>
             <Logo />
             <Link className="navitem" href="/">
               Home
@@ -19,9 +20,10 @@ function PageShell({ pageContext, children }) {
             <Link className="navitem" href="/about">
               About
             </Link>
-          </Sidebar>
+          </SqHeader>
           <Content>{children}</Content>
-        </Layout>
+          <SqFooter />
+        </>
       </PageContextProvider>
     </React.StrictMode>
   )
@@ -41,35 +43,25 @@ function Layout({ children }) {
   )
 }
 
-function Sidebar({ children }) {
+function SqHeader({ children }) {
   return (
-    <div
+    <header
       style={{
-        padding: 20,
-        flexShrink: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        lineHeight: '1.8em',
       }}
     >
       {children}
-    </div>
+    </header>
   )
 }
 
 function Content({ children }) {
   return (
-    <div
+    <main
       style={{
-        padding: 20,
-        paddingBottom: 50,
-        borderLeft: '2px solid #eee',
-        minHeight: '100vh',
       }}
     >
       {children}
-    </div>
+    </main>
   )
 }
 
@@ -77,8 +69,6 @@ function Logo() {
   return (
     <div
       style={{
-        marginTop: 20,
-        marginBottom: 10,
       }}
     >
       <a href="/">
