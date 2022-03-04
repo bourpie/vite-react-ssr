@@ -14,7 +14,7 @@ npm run dev
 ```
 
 ## PROD
-Pour tester la version builder en local
+Pour tester le build en local
 
 ```bash
 npm run prod
