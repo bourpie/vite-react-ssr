@@ -1,9 +1,9 @@
 import React from 'react'
-import logo from './logo.svg'
-import './PageShell.scss'
+import './sass/main.scss'
 import { PageContextProvider } from './usePageContext'
+import { SqHeader } from '../components/SqHeader/SqHeader'
 import { SqFooter } from '../components/SqFooter/SqFooter'
-import { Link } from './Link'
+import { SqContenu } from '../components/SqContenu/SqContenu'
 
 export { PageShell }
 
@@ -13,67 +13,14 @@ function PageShell({ pageContext, children }) {
       <PageContextProvider pageContext={pageContext}>
         <>
           <SqHeader>
-            <Logo />
-            <Link className="navitem" href="/">
-              Home
-            </Link>
-            <Link className="navitem" href="/about">
-              About
-            </Link>
+            {children}
           </SqHeader>
-          <Content>{children}</Content>
+          <SqContenu>
+            {children}
+          </SqContenu>
           <SqFooter />
         </>
       </PageContextProvider>
     </React.StrictMode>
-  )
-}
-
-function Layout({ children }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        maxWidth: 900,
-        margin: 'auto',
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-function SqHeader({ children }) {
-  return (
-    <header
-      style={{
-      }}
-    >
-      {children}
-    </header>
-  )
-}
-
-function Content({ children }) {
-  return (
-    <main
-      style={{
-      }}
-    >
-      {children}
-    </main>
-  )
-}
-
-function Logo() {
-  return (
-    <div
-      style={{
-      }}
-    >
-      <a href="/">
-        <img src={logo} height={64} width={64} alt="logo" />
-      </a>
-    </div>
   )
 }

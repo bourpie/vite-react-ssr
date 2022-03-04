@@ -1,15 +1,14 @@
 import {
   React,
+  SqNavigation,
 } from "./index";
-import "./SqHeader.scss";
 
-const SqHeader = () => (
-  <header>
-    <nav aria-label="Navigation principale">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-    </nav>
-  </header>
-);
+function SqHeader({ children }) {
+  return (
+    <header className="main-header">
+        <SqNavigation />
+    </header>
+  )
+}
 
 export { SqHeader };

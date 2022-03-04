@@ -5,15 +5,11 @@ export { Page }
 
 function Page() {
   return (
-    <>
-      <h1>Welcome</h1>
-      This page is:
-      <ul>
-        <li>Rendered to HTML.</li>
-        <li>
-          Interactive. <Counter />
-        </li>
-      </ul>
-    </>
+    <section aria-label="Bienvenue" className="container">
+        <h1>Bienvenue à Accueil</h1>
+
+        <Counter />
+
+      </section>
   )
 }

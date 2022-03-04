@@ -1,0 +1,13 @@
+.main-nav {
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__menu {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+
+    }
+}

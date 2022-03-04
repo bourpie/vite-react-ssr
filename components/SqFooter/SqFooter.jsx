@@ -1,10 +1,15 @@
 import {
   React,
 } from "./index";
-import "./SqFooter.scss";
 
-const SqFooter = () => (
-  <footer>Footer</footer>
-);
+function SqFooter({ children }) {
+  return (
+    <header className="main-footer">
+      <div className="container">
+        {children}
+      </div>
+    </header>
+  )
+}
 
 export { SqFooter };
