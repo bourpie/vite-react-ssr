@@ -1,0 +1,113 @@
+/* styles/_mediaQueries.scss */
+@import "breakpoints";
+
+
+// mixins generaux.
+@mixin depuis($device-width) {
+    @media screen and (min-width: $device-width) {
+        @content;
+    }
+}
+
+@mixin jusqua($device-width) {
+    @media screen and (max-width: $device-width) {
+        @content;
+    }
+}
+
+
+
+// mixins specifiques à chaque breakpoint.
+
+// Small devices
+@mixin depuis_sm {
+    @include depuis(#{$screen-sm-min}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin depuis_md {
+    @include depuis(#{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+// utilisé pour le look de la version desktop incluant: tablette landscape, desktop moyen et desktop large
+@mixin depuis_lg {
+    @include depuis(#{$screen-lg-min}) {
+        @content;
+    }
+  
+}
+
+// Extra large devices: ecrans desktop moyen et large
+@mixin depuis_xl {
+    @include depuis(#{$screen-xl-min}) {
+        @content;
+    }
+}
+
+// Extra extra large devices
+@mixin depuis_xxl {
+    @include depuis(#{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+// Custom devices
+@mixin depuis_rwd($screen) {
+    @include depuis(#{$screen+'px'}) {
+        @content;
+    }
+}
+
+// Small devices
+@mixin jusqua_sm {
+    @include jusqua(#{$screen-sm-min}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin jusqua_md {
+    @include jusqua(#{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin jusqua_lg {
+    @include jusqua(#{$screen-lg-min}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin jusqua_xl {
+    @include jusqua(#{$screen-xl-min}) {
+        @content;
+    }
+}
+
+// Extra extra large devices
+@mixin jusqua_xxl {
+    @include jusqua(#{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+// Custom devices
+@mixin jusqua_rwd($screen) {
+    @include jusqua(#{$screen+'px'}) {
+        @content;
+    }
+}
+
+// Tablette paysage
+@mixin seulement_tablette_paysage(){
+    @media screen and (max-width: $screen-lg-min) and (orientation: landscape){
+      @content;
+    }
+}

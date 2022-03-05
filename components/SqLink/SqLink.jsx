@@ -1,4 +1,4 @@
-import { Button, React } from "./index";
+import { Link, React } from "./index";
 
 const SqLink = ({
   className,
@@ -8,13 +8,14 @@ const SqLink = ({
 }) => {
 
   return (
-    <Button
-      className={`sq-link ${className ?? ""}`}
-      disableRipple={disableRipple}
-      href={href}
-    >
-      {children}
-    </Button>
+
+    <Link 
+      href={href} 
+      underline="always" 
+      className={`sq-link ${className ?? ""}`}>
+    {children}
+  </Link>
+
   );
 };
 export { SqLink };

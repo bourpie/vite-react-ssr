@@ -1,1 +1,8 @@
-@import 'layout';
+@use "colors";
+@use "reset";
+@use "typo";
+@use "spacing";
+@use "breakpoints";
+@use "mediaQueries";
+@use "visibilities";
+@use "grid";

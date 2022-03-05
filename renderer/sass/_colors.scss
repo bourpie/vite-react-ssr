@@ -1,0 +1,44 @@
+/* styles/_colors.scss */
+@import "palettes";
+
+/**
+ *
+ * Couleurs du thème de base en version 'css custom property' (a.k.a. 'variables css')
+ * Pour en simplifier l'accès dans les feuilles de style
+ *
+ */
+
+:root {
+  --color-divider: #{change-color($ink, $alpha: 0.12)};
+  --color-gris-100: #{get-color($gris, 100)};
+  --color-gris-200: #{get-color($gris, 200)};
+  --color-gris-300: #{get-color($gris, 300)};
+  --color-gris-80: #{get-color($gris, 80)};
+  --color-gris-110: #{get-color($gris, 110)};
+  --color-gris-350: #{get-color($gris, 350)};
+  --color-grisBleu-110: #{get-color($bleu-gris, 110)};
+  --color-grisBleu-410: #{get-color($bleu-gris, 410)};
+  --color-grisBleu-550: #{get-color($bleu-gris, 550)};
+  --color-SqGrisMoyen: #{get-color($gris, 110)};
+  --color-SqGrisFermont: #5c6a79;
+  --color-SqBleuSaguenay: #41758C;
+  --color-SqBleuTadoussac: #009CDE;
+  --color-SqRougeRougement:#{get-color($couleurs-secondaires, "SqRougeRougemont")};
+
+  --color-grisManic: #a6afb2;
+  --color-sqNoir: #{$ink};
+  --color-surface: #{$SqWhite};
+  --color-primary-light: #{get-color($orange, 600)};
+  --color-primary: #{get-color($orange, 800)};
+  --color-primary-dark: #{get-color($orange, 900)};
+  --color-SqBleu: #{$SqBleu}; 
+  --color-text: #{change-color($ink, $alpha: 0.87)};
+  --color-text-disabled: #{change-color($ink, $alpha: 0.38)};
+  --color-text-hint: #{change-color($ink, $alpha: 0.38)};
+  --color-text-secondary: #{change-color($ink, $alpha: 0.54)};
+  --color-visited: #{$visited};
+  --color-success: #70b32c;
+  --color-warning: #ed9b33;
+  --color-error: #9e2b2f;
+  --color-info: #009cde;
+}

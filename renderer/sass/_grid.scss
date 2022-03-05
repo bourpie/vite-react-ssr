@@ -1,0 +1,87 @@
+/* styles/_grid.scss */
+@import "breakpoints";
+@import "mediaQueries";
+
+/**
+ *
+ * Variables et mixins pour definir la grille
+ *
+ */
+
+
+// -- VARIABLES
+
+$column-number: (
+  small: 4,
+  medium: 8,
+  large: 12,
+);
+$gutter: (
+  small: 16px,
+  medium: 24px,
+  large: 32px,
+);
+$layout-width: 100vw;
+$layout-max-width: 1920px;
+
+$nav-height: (
+    small: 4rem,
+    large: 8.5rem,
+  );
+
+
+  // -- MIXINS
+
+// 
+// Mixin pour batir des grilles dynamqiues sur IE11. Utilisé pour le megamenu et le footer.
+//
+  //$start-column:1,
+  //$start : index du premier enfant qu'on veut positioner 
+@mixin ie-grid-items($start: 1, $items: 9, $start-column: 1) {
+  $row: 1;
+  $column: $start-column;
+
+  @for $i from $start through $items {
+    $column: $column + 2;
+
+    :nth-child(#{$i}) {
+      -ms-grid-row: $row;
+      -ms-grid-column: $column;
+    }
+
+    @if $i % 5 == 0 {
+      $column: $start-column;
+      $row: $row + 1;
+    }
+  }
+}
+
+
+/*
+// La classe colspan definit le largeur des éléments en colonnes (colSpan) 
+// Utilisation : _colSpan-md-10 _colSpan-lg-12 _colSpan-xl-12 _colSpan-xxl-10
+
+// La classe colStart positionne les éléments sur la grille à la colonne (colStart)
+// Utilisation : _colStart-md-10 _colStart-lg-12 _colStart-xl-12 _colStart-xxl-10
+
+*/
+
+@mixin creer_classes_colSpanEtcolStart {
+  @each $size, $breakpoint-value in $breakpoints {
+    @for $colNum from 1 through 12 {
+      ._colSpan-#{$size}-#{$colNum} {
+        @media screen and (min-width: #{$breakpoint-value}) {
+          grid-column-end: span $colNum;
+        }
+      }
+      ._colStart-#{$size}-#{$colNum} {
+        @media screen and (min-width: #{$breakpoint-value}) {
+          grid-column-start: $colNum;
+        }
+      }
+    }
+  }
+}
+@include creer_classes_colSpanEtcolStart;
+
+

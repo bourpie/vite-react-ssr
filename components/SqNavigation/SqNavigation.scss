@@ -1,3 +1,5 @@
+@import "renderer/sass/palettes";
+
 .main-nav {
     &__container {
         display: flex;
@@ -9,5 +11,17 @@
         list-style: none;
         gap: 1rem;
 
+        &-item {
+            font-size: 1.2rem;
+
+            .sq-link.MuiLink-root {
+                text-decoration: none;
+                color: rgb(0, 0, 22);
+
+                &:hover {
+                    color: map-get($couleurs-secondaires, SqOrange);
+                }
+            }
+        }
     }
 }

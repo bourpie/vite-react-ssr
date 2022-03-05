@@ -1,0 +1,113 @@
+/* styles/_visibilities.scss */
+@import "breakpoints";
+@import "mediaQueries";
+
+// classes et mixins pour mettre visible ou caché des elements. 
+
+
+// AFFICHAGE CONDITIONNEL
+._visible- {
+    //classes pour gerer l'affichage des elements sur les differents écrans.
+    &depuis- {
+        &sm { //_visible-depuis-sm
+            @include jusqua_sm {
+                display: none;
+            }
+        }
+
+        &md {
+            @include jusqua_md {
+                display: none;
+            }
+        }
+
+        &lg {
+            @include jusqua_lg {
+                display: none;
+            }
+        }
+
+        &xl {
+            @include jusqua_xl {
+                display: none;
+            }
+        }
+    }
+
+    &jusqua- {
+        &sm { //_visible-jusqua-sm
+            @include depuis_sm {
+                display: none;
+            }
+        }
+
+        &md {
+            @include depuis_md {
+                display: none;
+            }
+        }
+
+        &lg {
+            @include depuis_lg {
+                display: none;
+            }
+        }
+
+        &xl {
+            @include depuis_xl {
+                display: none;
+            }
+        }
+    }
+    //classes specifiques pour les affichages qui vient du cms
+    &Desktop {
+        @include jusqua_lg {
+            display: none;
+        }
+    }
+
+    &Mobile {
+        @include depuis_md {
+            display: none;
+        }
+    }
+
+    &Tablet {
+        @include jusqua($screen-md-min - 1) {
+            display: none;
+        }
+
+        @include depuis_xl {
+            display: none;
+        }
+    }
+
+    &Mobile-Tablet, &Tablet-Mobile {
+        @include depuis_xl {
+            display: none;
+        }
+    }
+
+    &Mobile-Desktop, &Desktop-Mobile {
+        @media screen and (min-width: $screen-md-min) and (max-width: $screen-lg-min) {
+            display: none;
+        }
+    }
+
+    &Tablet-Desktop, &Desktop-Tablet {
+        @include jusqua($screen-md-min - 1) {
+            display: none;
+        }
+    }
+}
+
+
+._hideAccessibilityMsg{
+    height: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    width: 0;
+}

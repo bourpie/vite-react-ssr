@@ -1,0 +1,26 @@
+/* styles/_patterns.scss */
+
+///
+// DESIGN PATTERNS
+// Collection de mixins, de classes extensibles ou de fonctions réutilisables.
+// Elles correspondent à l'implémentation préférée de certains motif de développement courant
+//
+//
+
+// Inset
+//
+// Implémentation de la propriété "inset", supportée seulement par Firefox
+// @voir "https://drafts.csswg.org/css-logical/#propdef-inset"
+//
+@mixin inset($top: 0, $right: 0, $bottom: 0, $left:0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin bleed() {
+  margin-left: calc(-1 * var(--viewport-inset));
+  margin-right: calc(-1 * var(--viewport-inset));
+}

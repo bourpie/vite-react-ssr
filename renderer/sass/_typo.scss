@@ -1,0 +1,290 @@
+/* _typo.scss */
+@import "utils";
+@import "breakpoints";
+@import "mediaQueries";
+
+
+// --VARIABLES
+$fontSizes: (
+  body2: "1rem",
+  body1: pxToRem(15),
+  button: pxToRem(18),
+  p: pxToRem(16),
+  caption: pxToRem(13),
+  label: pxToRem(13),
+);
+
+$fontsProps-Responsive: (
+  h1: (
+    sm: (
+      fontSize: pxToRem(34),
+      lineHeight: pxToRem(42),
+      fontWeight: 700,
+    ),
+    md: (
+      fontSize: pxToRem(44),
+      lineHeight: pxToRem(52),
+      fontWeight: 700,
+    ),
+  ),
+  h2: (
+    sm: (
+      fontSize: pxToRem(24),
+      lineHeight: pxToRem(32),
+      fontWeight: 700,
+    ),
+    md: (
+      fontSize: pxToRem(34),
+      lineHeight: pxToRem(42),
+      fontWeight: 700,
+    ),
+  ),
+  h3: (
+    sm: (
+      fontSize: pxToRem(20),
+      lineHeight: pxToRem(30),
+      fontWeight: 400,
+    ),
+    md: (
+      fontSize: pxToRem(24),
+      lineHeight: pxToRem(32),
+      fontWeight: 400,
+    ),
+  ),
+  h4: (
+    sm: (
+      fontSize: pxToRem(16),
+      lineHeight: pxToRem(24),
+      fontWeight: 400,
+    ),
+    md: (
+      fontSize: pxToRem(20),
+      lineHeight: pxToRem(30),
+      fontWeight: 400,
+    ),
+  ),
+  h5: (
+    sm: (
+      fontSize: pxToRem(13),
+      lineHeight: pxToRem(19.5),
+      fontWeight: 400,
+    ),
+    md: (
+      fontSize: pxToRem(16),
+      lineHeight: pxToRem(24),
+      fontWeight: 400,
+    ),
+  ),
+  h6: (
+    sm: (
+      fontSize: pxToRem(13),
+      lineHeight: pxToRem(19.5),
+      fontWeight: 400,
+    ),
+    md: (
+      fontSize: pxToRem(13),
+      lineHeight: pxToRem(19.5),
+      fontWeight: 400,
+    ),
+  ),
+);
+
+///
+//
+// Forces de corps de texte en version 'css custom property' (a.k.a. 'variables css')
+// Pour en simplifier l'accès dans les feuilles de style
+//
+///
+:root {
+  @each $size, $value in $fontSizes {
+    --font-size-#{$size}: #{$value};
+  }
+  // letterspacing du Theme.js
+  //
+  --letter-spacing-dense: -0.01562em;
+  --letter-spacing-normal: 0.01em;
+  --letter-spacing-lache: 0.01562em;
+}
+
+
+
+
+// --STYLES
+
+///
+//
+// Forces de corps de texte en version classes utilitaires
+//
+///
+@each $size, $value in $fontSizes {
+  ._font-size-#{$size} {
+    font-size: #{$value};
+  }
+}
+
+// Font-styles
+//
+[italic],
+.italic,
+._italic {
+  font-style: italic;
+}
+
+// Graisses de texte en version 'css custom property' (a.k.a. 'variables css')
+// Pour en simplifier l'accès dans les feuilles de style
+//
+///
+$fontWeights: ("400", "500", "700", "900");
+:root {
+  @each $weight in $fontWeights {
+    --font-weight-#{$weight}: #{$weight};
+  }
+}
+
+// Version classes utilitaires
+//
+@each $weight in $fontWeights {
+  [font-weight="#{$weight}"],
+  ._font-weight-#{$weight}\! {
+    font-weight: unquote($weight);
+  }
+  [font-weight="#{$weight}!"],
+  ._font-weight-#{$weight}\! {
+    font-weight: unquote($weight) !important;
+  }
+}
+
+[bold],
+.bold,
+._bold {
+  font-weight: 700;
+}
+
+[black],
+.black,
+._black {
+  font-weight: 900;
+}
+
+[bold\!],
+.bold\!,
+._bold\! {
+  font-weight: 700 !important;
+}
+
+[black\!],
+.black\!,
+._black\! {
+  font-weight: 900 !important;
+}
+
+// Attributs de letter-spacing
+[letter-spacing="0"] {
+  letter-spacing: 0;
+}
+
+// Simule les UTI
+//
+[letter-spacing="15"],
+.letter-spacing-15 {
+  letter-spacing: 0.015em;
+}
+
+[letter-spacing="20"],
+.letter-spacing-20 {
+  letter-spacing: 0.02em;
+}
+
+[letter-spacing="25"],
+.letter-spacing-25 {
+  letter-spacing: 0.025em;
+}
+
+[letter-spacing="50"],
+.letter-spacing-50 {
+  letter-spacing: 0.05em;
+}
+
+// Négatifs
+// La classe porte à erreur
+//
+// On pourra en ajouter au besoin
+//
+[letter-spacing="-15"],
+.letter-spacing--15 {
+  letter-spacing: -0.015em;
+}
+
+[letter-spacing="-20"],
+.letter-spacing--20 {
+  letter-spacing: -0.02em;
+}
+// Alignements
+//
+._text-left {
+  text-align: left;
+}
+
+._text-center {
+  text-align: center;
+}
+
+._text-right {
+  text-align: right;
+}
+
+// Rendering
+//
+._font-smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.h1_xl {
+  @include depuis_xl {
+    font-size: pxToRem(54);
+    letter-spacing: calc(pxToRem(54) / 100);
+    line-height: pxToRem(63);
+  }
+}
+
+// -- MIXINS
+
+//exemple: _variante-police("h3", "md")
+@mixin _variante-police($heading, $taille) {
+  $fontSize: get-value(
+    get-value(get-value($fontsProps-Responsive, $heading), $taille),
+    "fontSize"
+  );
+  font-size: $fontSize;
+  letter-spacing: calc(#{$fontSize}/ 100);
+  line-height: get-value(
+    get-value(get-value($fontsProps-Responsive, $heading), $taille),
+    "lineHeight"
+  );
+  font-weight: get-value(
+    get-value(get-value($fontsProps-Responsive, $heading), $taille),
+    "fontWeight"
+  );
+}
+
+
+/*
+  // classe qui limite le texte au nb de lignes definis. Affiche "..." avant couper le texte. 
+  // Utilisation line-clamp-sm-1, line-clamp-md-2, ..., line-clamp-xl-4
+  */
+  @mixin creer_line-clamps {
+    @each $size, $breakpoint-value in $breakpoints {
+      @for $nbLines from 1 through 9 {
+        .line-clamp-#{$size}-#{$nbLines} {
+          @media screen and (min-width: #{$breakpoint-value}) {
+            display: -webkit-box;
+            -webkit-line-clamp: $nbLines;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+  @include creer_line-clamps;

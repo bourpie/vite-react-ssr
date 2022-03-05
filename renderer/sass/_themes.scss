@@ -1,0 +1,515 @@
+/* styles/_themes.scss */
+@import "breakpoints";
+@import "palettes";
+@import "typo";
+
+// --
+// -- MIXINS PRIVÉS.
+// --
+@mixin -set-section-theme($couleur-fond, $couleur-police: $ink) {
+  background-color: $couleur-fond;
+  color: $couleur-police;
+}
+
+@mixin -set-composante-theme-pale($couleur-fond: $SqWhite,
+  $couleur: $ink,
+  $couleur-icone: $SqBleu,
+  $couleur-bouton-background: $SqGrisMoyen,
+  $couleur-effet: #{get-color($orange, 900)}) {
+  background-color: $couleur-fond;
+  color: $couleur;
+
+  .SqIconButton {
+    background: $couleur-bouton-background;
+
+    .MuiSvgIcon-root {
+      color: $couleur-icone;
+    }
+  }
+
+  .SqLink {
+    &:visited {
+      .SqLink-Label {
+        color: inherit;
+      }
+    }
+  }
+
+  .MuiCardActions-root:hover,
+  .SqLink:focus {
+    .SqLink-Background {
+      background: $couleur-fond;
+    }
+
+    .MuiSvgIcon-root {
+      color: $couleur-effet;
+    }
+  }
+
+  .MuiCardActions-root:active {
+    .MuiSvgIcon-root {
+      color: $couleur-fond;
+    }
+
+    .SqIconButton {
+      background: $couleur-effet;
+    }
+  }
+}
+
+@mixin -set-composante-theme($couleur-fond,
+  $couleur: $ink,
+  $couleur-effet: $ink) {
+  background-color: $couleur-fond;
+  color: $couleur;
+
+  .SqIconButton {
+    background: $couleur;
+
+    .MuiSvgIcon-root {
+      color: $couleur-fond;
+    }
+  }
+
+  .SqBanniereIcon-Chip {
+    color: $couleur;
+    border-color: $couleur;
+  }
+
+  .SqLink {
+    &:visited {
+      .SqLink-Label {
+        color: inherit;
+      }
+    }
+  }
+
+  .MuiCardActions-root:hover,
+  .SqLink:focus {
+    .MuiSvgIcon-root {
+      color: $couleur-effet;
+    }
+  }
+
+  .MuiCardActions-root:active {
+    .MuiSvgIcon-root {
+      color: $couleur;
+    }
+
+    .SqIconButton {
+      background: $couleur-effet;
+    }
+  }
+}
+
+// mixins specifiques pour les themes des sections des pages
+@mixin -theme_fond_SqBleu_Section {
+  @include -set-section-theme($SqBleu, $SqWhite);
+
+  @media print {
+    @include -set-section-theme($SqWhite);
+  }
+}
+
+@mixin -theme_fond_SqGrisMoyen_Section {
+  @include -set-section-theme(#{get-color($gris, 110)});
+}
+
+@mixin -theme_fond_SqBlanc_Section {
+  @include -set-section-theme($SqWhite);
+}
+
+// Mixin pour les buttons outlined en blanc
+// Ne pas l'appeller directement sur les composantes. C'est un mixin "privé"
+// Il est appellé par theme_fond_SqBleu_Composante.
+@mixin -SqButtonWhiteOutlined {
+  .SqButton {
+    background-color: transparent;
+    border: 2px solid $SqWhite;
+    opacity: 1;
+  }
+
+  .SqButton:hover {
+    background-color: $SqWhite;
+
+    span {
+      color: #{get-color($orange, 900)};
+    }
+  }
+
+  .SqButton:focus {
+    background-color: $SqWhite;
+
+    span {
+      color: #{get-color($orange, 900)};
+    }
+  }
+}
+
+// --
+// -- MIXINS PUBLICS.
+// --
+
+// Mixin à utiliser sur toutes les composantes en fond bleu foncé.
+// Il doit etre apliquer sur le container.
+// ce mixin est responsable de styler le fond, police, buttons, chips,
+// et tous les elements des composantes en fond blue foncé
+@mixin theme_fond_SqBleu_Composante {
+  @media screen {
+    @include -set-composante-theme($SqBleu,
+      $SqWhite,
+      #{get-color($orange, 900)});
+    @include -SqButtonWhiteOutlined;
+  }
+
+  //Exception en mode impression, les composantes en fond bleu foncé sont imprimés en blanc,
+  // les icones en noir
+  @media print {
+    @include -set-composante-theme($SqWhite);
+
+    .SqBanniereIcon-Icon,
+    .SqBanniereIconLien-Icon {
+      .sqImage-img {
+        filter: invert(100%);
+      }
+    }
+
+    padding: 1rem;
+    border: 1px solid #dbdcdb;
+  }
+}
+
+@mixin theme_SqWhite_button {
+  @media screen {
+    @include -SqButtonWhiteOutlined;
+  }
+}
+
+@mixin theme_fond_SqWhite_Composante {
+  @media screen {
+    @include -set-composante-theme-pale($SqWhite,
+      $ink,
+      $SqBleu,
+      $SqGrisMoyen,
+      #{get-color($orange, 900)});
+    //@include -SqButtonWhiteOutlined;
+  }
+}
+
+@mixin theme_fond_Image() {
+  font-size: 0;
+
+  .sqSectionPage-Layout {
+    margin-top: 11rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @include depuis_md {
+      margin-top: 8.3125rem;
+    }
+
+    @include depuis_lg {
+      margin-top: 7.8125rem;
+    }
+
+    @include depuis_xl {
+      margin-top: 8.5rem;
+    }
+
+    .sqSectionPage-Content {
+      grid-column-end: span 3;
+      grid-column-start: 1;
+
+      @include depuis_md {
+        grid-column-end: span 5;
+        grid-column-start: 1;
+      }
+
+      @include depuis_lg {
+        grid-column-end: span 6;
+        grid-column-start: 1;
+      }
+
+      @include depuis_xl {
+        grid-column-end: span 5;
+        grid-column-start: 2;
+      }
+
+      @include depuis_xxl {
+        grid-column-end: span 4;
+        grid-column-start: 3;
+      }
+    }
+  }
+
+  .sqSectionPage-BackgroundImage .sqImage-img {
+    width: 100%;
+
+    @include depuis_sm {
+      margin-left: -60%;
+      width: auto;
+    }
+
+    @include depuis_lg {
+      margin-left: -43%;
+    }
+
+    @include depuis_xl {
+      margin-left: 0;
+    }
+  }
+}
+
+// mixins specifiques pour les bannieres
+
+//theme pour les bannieres icone. Normalement avec une fond sur l'icone en bleu, verte ou rouge.
+@mixin theme_banniereIcone($background-container-color,
+  $background-icon-color) {
+  .SqBanniereIcon-Container {
+    background-color: $background-container-color;
+  }
+
+  .SqBanniereIcon-Icon {
+    background-color: $background-icon-color;
+    height: 100%;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -24px;
+    padding: 16px;
+  }
+
+  @include depuis_lg {
+    .SqBanniereIcon-Icon {
+      margin: -32px;
+      padding: 32px;
+      height: 100%;
+      place-self: center;
+    }
+
+    .SqBanniereIcon-Heading {
+      padding-left: 32px;
+    }
+
+    .SqBanniereIcon-Body {
+      padding-left: 32px;
+    }
+  }
+}
+
+//theme pour les bannieres en fond bleu foncé. Comme la banniere separatrice.
+@mixin theme_banniereCarte($background-container-color) {
+  .SqBanniereIcon-Container {
+    @include theme_fond_SqBleu_Composante;
+
+    .SqBanniereIcon-Icon {
+      margin: -32px;
+      padding: 36px 38px;
+      width: 100%;
+    }
+
+    @include jusqua_lg {
+      .SqBanniereIcon-Action {
+        .SqBanniereIcon-CtaWrapper {
+
+          .SqButton:visited,
+          .SqButton:hover {
+            background-color: $SqBleu;
+
+            span {
+              color: $SqWhite;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//theme pour la couleur de l'accordeon et de banniereAccordeon
+@mixin theme_banniereAccordeon($couleur-trait) {
+  .SqAccordeon-Body {
+    .SqAccordeon-Accordion {
+      border-bottom-width: 0.125rem;
+      border-bottom-style: solid;
+      border-color: $SqGrisRouyn;
+
+      &.Mui-expanded {
+        border-color: $couleur-trait;
+      }
+
+      &:hover {
+        border-color: $couleur-trait;
+      }
+    }
+  }
+
+  .SqCarteIconLien {
+    border-color: $couleur-trait;
+  }
+}
+
+/** 
+* Themes des bannieres Full Bleed Image 
+**/
+
+// Theme de la banniere Hero
+@mixin theme_banniereHero {
+  &-Foncé {
+    background-color: $ink;
+    color: $SqWhite;
+  }
+
+  &-Clair {
+    background-color: $SqWhite;
+    color: $ink;
+  }
+
+  .SqBanniereFullBleedImage-Container {
+    .SqBanniereFullBleedImage-Overtitle {
+      padding-bottom: 1rem;
+    }
+
+    .SqBanniereFullBleedImage-Title {
+      padding-bottom: 0.5rem;
+    }
+
+    .SqBanniereFullBleedImage-Subtitle {
+      padding-bottom: 2rem;
+      font-weight: 400;
+    }
+  }
+}
+
+// Theme de la banniere Separatrice Image
+@mixin theme_banniereSeparatriceImage {
+  @include depuis_md {
+    .sqSectionPage-Layout {
+      top: 0;
+      bottom: 0;
+      align-content: center;
+    }
+  }
+
+  .SqBanniereFullBleedImage-Container {
+    @include theme_fond_SqBleu_Composante;
+
+    .SqBanniereFullBleedImage-Overtitle {
+      font-style: initial;
+      padding-bottom: 0.75rem;
+    }
+
+    .SqBanniereFullBleedImage-Title {
+      padding-bottom: 1.5rem;
+    }
+
+    .SqButton {
+      width: 100%;
+
+      @include depuis_sm {
+        width: auto;
+      }
+    }
+  }
+}
+
+// Theme pour SqMessage
+@mixin theme_sqMessage_Simple_Erreur {
+
+  &.SqCarteMessage-Carte,
+  .SqCarteMessage-Carte {
+    min-width: 9.375rem;
+    min-height: 15.75rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #{get-color($couleurs-secondaires, "SqRougeRougemont")};
+    color: #{get-color($couleurs-secondaires, "SqRougeRougemont")};
+
+    .SqCarteMessage-Contenu {
+      white-space: normal;
+      vertical-align: center;
+      align-self: center;
+
+      @include depuis_lg {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .SqCarteMessage-Icone {
+        margin-bottom: 1.5rem;
+        stroke-width: 4px;
+        width: 4rem;
+        height: 4rem;
+
+        &.warning {
+          stroke: #{get-color($couleurs-secondaires, "SqRougeRougemont")};
+        }
+
+        &.success {
+          stroke: #{get-color($couleurs-secondaires, "SqVertTremblant")};
+        }
+      }
+    }
+  }
+}
+
+@mixin theme_sqMessage_Detaille {
+
+  .SqCarteMessage-Carte,
+  &.SqCarteMessage-Carte {
+    box-shadow: none;
+
+    .SqCarteMessage-Contenu {
+      padding: 2rem;
+
+      .SqCarteMessage-TitreMessage {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        @include _variante-police("h2", "md");
+      }
+
+      .SqCarteMessage-Texte {
+        text-align: center;
+        @include _variante-police("h5", "md");
+      }
+
+      .SqCarteMessage-Icone {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5rem;
+        width: 6rem;
+        height: 6rem;
+        stroke-width: 4px;
+
+        &.warning {
+          stroke: #{get-color($couleurs-secondaires, "SqRougeRougemont")};
+        }
+
+        &.success {
+          stroke: #{get-color($couleurs-secondaires, "SqVertTremblant")};
+        }
+      }
+    }
+  }
+}
+
+// --
+// -- STYLES
+// --
+
+//TODO: Génerer les styles avec un boucle à partir des variable
+._fond_SqBleu {
+  @include -theme_fond_SqBleu_Section;
+}
+
+._fond_SqGrisMoyen {
+  @include -theme_fond_SqGrisMoyen_Section;
+}
+
+._fond_SqBlanc {
+  @include -theme_fond_SqBlanc_Section;
+}

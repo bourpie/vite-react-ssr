@@ -1,0 +1,138 @@
+/* _spacing.scss */
+@import "utils";
+
+:root {
+  --space-base: 6px;
+
+  @media (min-width: 1024px) {
+    --space-base: 8px;
+  }
+}
+
+// Margins
+//
+@for $sp from -4 through 10 {
+  [m="#{$sp}"],
+  ._m-#{$sp} {
+    margin: calc(#{$sp} * var(--space-base));
+  }
+  [mt="#{$sp}"],
+  ._mT-#{$sp} {
+    margin-top: calc(#{$sp} * var(--space-base));
+  }
+
+  [mb="#{$sp}"],
+  ._mB-#{$sp} {
+    margin-bottom: calc(#{$sp} * var(--space-base));
+  }
+
+  [my="#{$sp}"],
+  ._mY-#{$sp} {
+    margin-top: calc(#{$sp} * var(--space-base));
+    margin-bottom: calc(#{$sp} * var(--space-base));
+  }
+
+  [ml="#{$sp}"],
+  ._mL-#{$sp} {
+    margin-left: calc(#{$sp} * var(--space-base));
+  }
+
+  [mr="#{$sp}"],
+  ._mR-#{$sp} {
+    margin-right: calc(#{$sp} * var(--space-base));
+  }
+
+  [mx="#{$sp}"],
+  ._mX-#{$sp} {
+    margin-left: calc(#{$sp} * var(--space-base));
+    margin-right: calc(#{$sp} * var(--space-base));
+  }
+}
+
+[m="auto"],
+._m-auto {
+  margin: auto;
+}
+
+[mx="auto"],
+._mX-auto,
+._centerBlock {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+[mr="auto"],
+._mR-auto {
+  margin-right: auto;
+}
+
+[ml="auto"],
+._mL-auto {
+  margin-left: auto;
+}
+
+[mx="auto"],
+._mY-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+//Paddings
+//
+@for $sp from 0 through 10 {
+  [p="#{$sp}"],
+  ._p-#{$sp} {
+    padding: calc(#{$sp} * var(--space-base));
+  }
+  [pt="#{$sp}"],
+  ._pT-#{$sp} {
+    padding-top: calc(#{$sp} * var(--space-base));
+  }
+
+  [pb="#{$sp}"],
+  ._pB-#{$sp} {
+    padding-bottom: calc(#{$sp} * var(--space-base));
+  }
+
+  [py="#{$sp}"],
+  ._pY-#{$sp} {
+    padding-top: calc(#{$sp} * var(--space-base));
+    padding-bottom: calc(#{$sp} * var(--space-base));
+  }
+
+  [pl="#{$sp}"],
+  ._pL-#{$sp} {
+    padding-left: calc(#{$sp} * var(--space-base));
+  }
+
+  [pr="#{$sp}"],
+  ._pR-#{$sp} {
+    padding-right: calc(#{$sp} * var(--space-base));
+  }
+
+  [px="#{$sp}"],
+  ._pX-#{$sp} {
+    padding-left: calc(#{$sp} * var(--space-base));
+    padding-right: calc(#{$sp} * var(--space-base));
+  }
+}
+
+//
+._fullWidth {
+  width: 100%;
+}
+
+._flex {
+  display: flex;
+  justify-items: space-between;
+}
+
+// Unsets
+//
+.mUnset {
+  margin: unset;
+}
+
+.pUnset {
+  padding: unset;
+}

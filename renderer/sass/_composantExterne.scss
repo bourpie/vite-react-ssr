@@ -1,0 +1,281 @@
+/* styles/_composantExterne.scss */
+//
+// COMPOSANT EXTERNE
+// Ajout de CSS lié à des composants externe au site Aristote
+//
+
+/* Style pour Hotjar */
+._hj_feedback_container ._hj-21t0-__MinimizedWidgetMiddle__label {font-size:16px; font-weight:bold;}
+
+/* Style pour le clavardage */
+/*Afficher l'icone d'envoi de clavardage sur tablette et mobile*/
+.embeddedServiceLiveAgentStateChatAction.uiButton.medium svg { 
+    display: block!important;
+    -moz-box-sizing: border-box!important;
+    box-sizing: border-box!important;
+    background: url(https://soquij.force.com/aide/file-asset/icone_de_clavardage_blanche?v=1) no-repeat!important;
+    /*background: url(/sfsites/c/file-asset/icone_de_clavardage_blanche?v=1) no-repeat!important;*/
+    background-size: 4px 4px!important;
+    background-position: center!important;
+    width: 40px!important;  /*Width of new image */
+    height: 40px!important; /*Height of new image */
+    padding-left: 0px!important;  /*Equal to width of new image */
+    fill: #c35600!important;
+    right: -5px!important;
+  }
+  
+  /*Supression ellipsis text button ... */
+  .embeddedServiceHelpButton .uiButton .helpButtonLabel .message {
+    text-overflow: initial !important;
+  }
+  
+  /* Focus ... */
+  .embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 0 !important;
+  }
+  
+  .embeddedServiceHelpButton .helpButton .uiButton:focus-visible {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px #007aff !important;
+  }
+  
+  .helpButtonEnabled:focus .helpButtonLabel {
+    text-decoration: none !important;
+  }
+  
+  /*Placement vertical du bouton sur desktop et mobile*/
+  /*desktop*/
+  @media (min-width: 414px) { 
+      .embeddedServiceHelpButton .helpButton {
+       height: 48px!important;       
+      }
+  }
+      
+  /*mobile*/
+  @media (max-width: 414px) { 
+      .embeddedServiceHelpButton .helpButton {
+      height: 56px!important;   
+      }
+  }
+  
+  /*Remplacer l'icone de clavardage*/
+  /*Cacher l'icone actuel Desktop et mobile*/
+  .embeddedServiceIcon::before {
+      display:none!important;
+  }
+  
+  /* Icon clavardage */
+  .embeddedServiceHelpButton .embeddedServiceIcon { 
+      background: url(../components/SqSvgIcon/svg/sqj.chat.icon.svg) no-repeat !important;
+      background-position: center!important;
+      width: 40px!important;  /*Width of new image */
+      height: 40px!important; /*Height of new image */
+      display: block !important;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  
+  /*desktop*/ 
+  @media (min-width: 414px) { 
+      .embeddedServiceHelpButton .embeddedServiceIcon { 
+        padding-left: 40px; /* Equal to width of new image */
+        background-size:80% 80% !important;
+      } 
+  } 
+  
+  /*mobile*/
+  @media (max-width: 414px) { 
+      .embeddedServiceHelpButton .embeddedServiceIcon { 
+        background-size: 24px 24px;
+        padding-left: 24px; /*Equal to width of new image */
+      } 
+  } 
+  
+  /*Effet de hover global*/
+  .embeddedServiceHelpButton .helpButton .uiButton:hover::before, .embeddedServiceHelpButton .helpButton .uiButton:focus::before {
+      border-radius: 40px!important;
+  }
+  
+  /*Clavardage ouvert*/
+  button.rich-button-item {
+      background-color:#ffffff!important;
+  }
+  
+  /*desktop*/
+  @media (min-width: 414px) { 
+      .embeddedServiceHelpButton .helpButton .uiButton { 
+          border-radius: 40px!important;
+          border-width: 2px!important;
+          border-style: solid!important;
+          border-color: #FFFFFF!important;
+          background-color: #1d2141!important;
+          font-size: 1.125em!important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, .3) !important;
+          padding: 8px 16px!important;
+          bottom: 32px!important;
+          font-weight: 700!important;
+          height: 60px!important;
+          min-width: 8em!important;
+          background-size:80% 80% !important;
+        } 
+    .embeddedServiceSidebarMinimizedDefaultUI { 
+        border-radius: 40px!important;
+        border-width: 2px!important;
+        border-style: solid!important;
+        border-color: #FFFFFF!important;
+        background-color: #1d2141!important;
+        font-size: 1.125em!important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .3) !important;
+        padding: 8px 16px!important;
+        bottom: 32px!important;
+        font-weight: 700!important;
+        height: 60px!important;
+        min-width: 8em!important;
+        background-size:80% 80% !important;
+    } 
+
+    .embeddedServiceSidebarMinimizedDefaultUI:hover { 
+        background-color: #000;
+    }
+    .embeddedServiceSidebar > button:hover {
+        background: #000 !important;
+    }
+  } 
+  
+  /*mobile*/
+  @media (max-width: 414px) { 
+      .embeddedServiceHelpButton .helpButton .uiButton { 
+          border-radius: 40px!important;
+          border-width: 2px!important;
+          border-style: solid!important;
+          border-color: #FFFFFF!important;
+          background-color: #1d2141!important;
+          font-size: 16px!important;
+          letter-spacing: 0.75px!important;
+          font-weight: 400!important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+          padding: 0 10px 0 8px!important;
+          min-width: 8em!important;
+          height: 54px!important;
+      }
+
+      .embeddedServiceSidebarMinimizedDefaultUI { 
+        border-radius: 40px!important;
+        border-width: 2px!important;
+        border-style: solid!important;
+        border-color: #FFFFFF!important;
+        background-color: #1d2141!important;
+        font-size: 16px!important;
+        letter-spacing: 0.75px!important;
+        font-weight: 400!important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+        padding: 0 10px 0 8px!important;
+        min-width: 8em!important;
+        height: 54px!important;
+    }
+    
+    .embeddedServiceSidebarMinimizedDefaultUI:hover { 
+        background-color: #000;
+    }
+    .embeddedServiceSidebar > button:hover {
+        background: #000 !important;
+    }
+  } 
+  
+  /*espacement entre l'icone bulle et texte*/
+  
+  /*mobile*/
+  @media (max-width: 414px) { 
+       .embeddedServiceHelpButton .embeddedServiceIcon {
+          margin-right: 0px!important;
+          margin-left: -5px!important;
+       }
+  }
+      
+  /*desktop*/
+  @media (min-width: 414px) { 
+      .embeddedServiceHelpButton .embeddedServiceIcon { 
+          margin-right: 6px !important;   
+      } 
+  } 
+
+  button.minimizeButton .slds-icon_container svg {
+    margin-top: -16px;
+    display: flex;
+  }
+  
+  .EmbeddedServiceHelpButton { 
+      bottom: 40px!important;
+  } 
+  
+  .headerAnnouncement[embeddedService-chatHeader_chatHeader] { 
+      font-size: 1em!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatPlaintextMessageDefaultUI.plaintextContent { 
+      line-height: 24px!important;
+      font-size: var(--lwc-esFontSizeSmall,1em)!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatEventMessage .eventMessage { 
+      font-size: var(--lwc-esFontSizeTextSmall,0.9em)!important;
+  } 
+  
+  h2[embeddedService-chatHeader_chatHeader] { 
+      font-size: 18.67px!important;
+      font-weight: 700!important;
+  } 
+  
+  [embeddedservice-chatheader_chatheader-host] { 
+      background-color: rgb(29, 33, 65)!important;
+  } 
+  
+  .embeddedServiceSidebar.layout-docked .dockableContainer { 
+      border-width: 2px!important;
+      border-style: solid!important;
+      border-color: #FFFFFF!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatAvatar.isLightningOutContext .agentIconColor0 { 
+     background-color: rgba(29, 33, 65, 1)!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatInputFooter .chasitorText { 
+      font-size: 1em!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatAvatar.isCommunitiesContext { 
+      font-weight: 700!important;
+      background-color: #1d2141!important;
+  } 
+  
+  .embeddedServiceLiveAgentStateChatPlaintextMessageDefaultUI.chasitor.plaintextContent { 
+      background: #c35600!important;
+  }
+  
+  .embeddedServiceLiveAgentStateChatInputFooter .chasitorControls .uiInput:hover { 
+      border: 1px solid #c35600!important;
+  }
+    
+  .embeddedServiceLiveAgentStateChatItem.chatMessage button:hover, .embeddedServiceLiveAgentStateChatItem.chatMessage button:hover:focus, .embeddedServiceLiveAgentStateChatItem.chatMessage button:hover span, .embeddedServiceLiveAgentStateChatItem.chatMessage button:hover:focus span { 
+      color: #444 !important;
+  }
+  
+  /*Ajustement de la fenetre de chat*/
+  
+  /*mobile*/@media (max-width: 414px) {
+  .embeddedServiceSidebar.layout-docked .dockableContainer, .embeddedServiceSidebar.layout-float .dockableContainer {
+  max-width: calc(100% - 48px)!important;
+  height: calc(100% - 24px)!important;
+  }
+  }
+  
+  /*desktop*/@media (min-width: 414px) {
+  .embeddedServiceSidebar.layout-docked .dockableContainer {
+  right: 48px!important;
+  }
+  }
+  
+  /*Grossir les boutons de confirmation de Justii*/
+  .embeddedServiceLiveAgentStateChatItem.chatMessage button span {
+      padding: 8px!important;
+  }

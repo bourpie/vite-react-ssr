@@ -1,0 +1,51 @@
+/* _utils.scss */
+// get-value
+//
+// Version améliorée de la fonction Sass native 'map-get()' pour pouvoir lire ('get') des valeurs
+// dans des maps imbriquées.
+// L'Usage est semblable à celui de 'map-get()',
+// mais on peut passer autant de 'keys' que nécessaires en second paramètre.
+// Oui, c'est une fonction récursive.
+//
+// Je la laisse ici pour le moment, car je ne lui connait pas d'autres usage
+// que de fouiller dans les palettes
+//
+//
+// $map {map} - Le map où on veut chercher
+// $keys {string | number} - La|les key(s) qui constituent le 'path' à atteindre
+// return - La valeur de la dernière key ou null
+//
+@function get-value($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+// get-color est un alias de get-value pour être plus transparent
+@function get-color($map, $keys...) {
+  @return get-value($map, $keys...);
+}
+
+// Font-sizes NiceToHave: implement with local variables
+//
+$basefontSize: 14;
+$htmlFontSize: 16;
+
+@function pxToRem($sizePx) {
+  @return calc(((#{$sizePx} / #{$htmlFontSize}) * #{$basefontSize}) / 14 * 1rem);
+}
+
+///
+// spacing
+//
+// Fonction utilitaire qui reflète celle de MUI
+// Recoit un nombre et retourne l'espacement de base multiplié par ce nombre.
+// On peut ainsi définir les espaces en incréments de l'espacement de base (8px)
+// spacing:: int -> int
+$base-space: 8;
+
+@function spacing($step: 1) {
+  @return $step * $base-space * 1px;
+}

@@ -1,0 +1,101 @@
+/* styles/_reset.scss */
+//
+// RESET
+// Le moins possible. Ajoutés à mesure des besoins.
+//
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  color: var(--color-sqNoir);
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+#app {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// IE 11 ne reconnait pas ces éléments html5
+main,
+header,
+footer,
+aside {
+  display: block;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+fieldset {
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  border: none;
+  border-width: 0;
+  outline-width: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: inline-block;
+}
+
+:any-link {
+  background-image: none;
+  text-decoration: none;
+  outline: none;
+}
+
+// Clear icon input
+input::-ms-clear,
+input[type=password]::-ms-reveal {
+  display: none;
+}
+
+// Focus Accessibility
+a:focus-visible,
+button.Mui-focusVisible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 5px #007aff !important;
+}
+
+a,
+button.Mui-focusVisible {
+  outline: 0 !important;
+
+  &:active,
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px #007aff !important;
+
+    &:not(:focus-visible) {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}

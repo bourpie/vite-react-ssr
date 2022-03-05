@@ -1,0 +1,140 @@
+/* styles/_printing-stylesheet.scss */
+@import "typo";
+@import "grid";
+
+@media print {
+  // -- MIXINS
+  @mixin creer_classes_colSpanEtcolStart {
+    @for $colNum from 1 through 12 {
+      ._colSpan-print-#{$colNum} {
+        grid-column-end: span $colNum;
+      }
+      ._colStart-print-#{$colNum} {
+        grid-column-start: $colNum;
+      }
+    }
+  }
+
+  @include creer_classes_colSpanEtcolStart;
+
+  // --STYLES
+
+  ._not-print {
+    display: none;
+  }
+
+  ._visible-depuis-sm,
+  ._visible-depuis-md {
+    @extend ._not-print;
+  }
+
+  @page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .SqBarNav-Container .SqBarNav-Toolbar .SqBarNav-ButtonsWrapper {
+    @extend ._not-print;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+
+  img {
+    break-inside: avoid-page;
+  }
+
+  .DefaulLayout-Body,
+  .Plumitifs-Composant,
+  .DefaulLayout-Footer {
+    color: #000016;
+    grid-column-end: span 12;
+    grid-column-start: 1;
+    margin-top: 3rem;
+  }
+
+  // ----
+  // Header
+  // ----
+  .SqBarNav-Container
+    .SqBarNav-LiensSecondaires
+    .SqListeLiens-LienIconeWrapper:after {
+    @extend ._not-print;
+  }
+  // ----
+  // Footer
+  // ----
+  .DefaulLayout-Footer {
+    width: 100%;
+    margin: 0;
+
+    .SqLogoLiensImportants-Container.Layout-Grid._not-print {
+      @extend ._not-print;
+    }
+    .SqFooter-Container .SqCopyright-Container {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+
+  // ----
+  // Elements
+  // No print button help and feedback
+  // ----
+  .helpButton, #_hj_feedback_container {
+    display: none;
+  }
+
+  // ----
+  // Sections des pages
+  // ----
+  .sqSectionPage-Container .sqSectionPage-Layout {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  // ----
+  // Banniere Icon
+  // ----
+  .SqBanniereIcon-Icon {
+    .sqImage-img {
+      filter: invert(100%);
+    }
+  }
+
+  // ----
+  // Banniere Composante Etapes
+  // ----
+  .sqSectionPage-Container.Banniere_Composante_Etapes .sqSectionPage-Layout {
+    
+    .sqSectionPage-Content {
+      @extend ._colSpan-print-12;
+    }
+
+    .SqSlide-Container, .SqSlider-PremiereCarte-Container{
+      width: auto;
+    }
+  }
+
+  // ----
+  // Banniere Actualité Juridiques
+  // ----
+  .SqBanniereFilPublicationsQuatuor-Container
+    .SqBanniereFilPublicationsQuatuor-CarteArticle
+    .SqCarte-Contenu
+    .SqCarte-Texte {
+    height: calc(1.5rem * 2);
+  }
+
+  // ----
+  // Banniere Carrousel de la page d'accueuil
+  // ----
+  .SqBanniereCarrousel-Container .SqBanniereCarrousel-SqImage._not-print {
+    @extend ._not-print;
+  }
+}

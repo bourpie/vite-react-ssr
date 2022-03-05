@@ -1,8 +1,8 @@
 import React from "react";
-import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import "./SqLink.scss";
 
 export {
     React,
-    Button,
+    Link,
 }

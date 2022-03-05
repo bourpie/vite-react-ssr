@@ -5,30 +5,37 @@ import {
     Link,
     PageContextProvider,
     Container,
+    Box,
+    Typography,
   } from "./index";
 
 function SqNavigation({ pageContext }) {
     return (
         <React.StrictMode>
-        <PageContextProvider pageContext={pageContext}>
-        <nav className="main-nav" aria-label="Navigation principale">
-            <Container className="main-nav__container" maxWidth="lg">
-            <SqLogo />
-            <ol className="main-nav__menu">
-
-                <li className="main-nav__menu-item">
-                    <a className="main-nav__menu-item-link" href="/produits">Produits</a>
-                </li>
-                <li>
-                    <a className="main-nav__menu-item-link" href="/formations">Formations</a>
-                </li>
-                <li>
-                    <a className="main-nav__menu-item-link" href="/trouver">Trouver une décision</a>
-                </li>
-            </ol>
-            </Container>
-        </nav>
-        </PageContextProvider>
+          <PageContextProvider pageContext={pageContext}>
+            <Box 
+              component="nav" 
+              className="main-nav" 
+              aria-label="Navigation principale">
+                <Container className="main-nav__container" maxWidth="lg">
+                  <SqLogo />
+                  <Typography 
+                    component="ol" 
+                    className="main-nav__menu _mT-4"
+                    >
+                      <Box component="li" className="main-nav__menu-item _mL-8" sx={{ mr: 5 }}>
+                        <SqLink href="/">Produit</SqLink>
+                      </Box>
+                      <Box component="li" className="main-nav__menu-item" sx={{ mr: 5 }}>
+                        <SqLink href="/formations">Formations</SqLink>
+                      </Box>
+                      <Box component="li" className="main-nav__menu-item">
+                        <SqLink href="/trouver">Trouver une décision</SqLink> 
+                      </Box>
+                  </Typography>
+                </Container>
+            </Box>
+          </PageContextProvider>
         </React.StrictMode>
     )
 }
